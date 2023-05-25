@@ -1,8 +1,8 @@
 {
-  "name": "tech-matchup-app",
+  "name": "AutoInsta",
   "version": "1.0.0",
   "description": "",
-  "main": "server/server.js",
+  "main": "server/connection.js",
   "scripts": {
     "start": "node server/server.js --ignore client",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
