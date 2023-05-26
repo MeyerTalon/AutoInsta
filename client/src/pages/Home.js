@@ -8,9 +8,33 @@ function Home() {
           <div className="col s12 m6 offset-m3">
             <div className="card">
               <div className="card-content">
-                <h5 className="card-title">Home Page</h5>
-                <p>Welcome to AutoInsta!</p>
-                <p>
+                <h5
+                  className="card-title"
+                  style={{
+                    textAlign: "center",
+                    fontFamily: "Arial, sans-serif",
+                    fontSize: "24px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Home Page
+                </h5>
+                <p
+                  style={{
+                    textAlign: "center",
+                    fontFamily: "Arial, sans-serif",
+                    fontSize: "16px",
+                  }}
+                >
+                  Welcome to AutoInsta!
+                </p>
+                <p
+                  style={{
+                    textAlign: "center",
+                    fontFamily: "Arial, sans-serif",
+                    fontSize: "18px",
+                  }}
+                >
                   <strong>UserName</strong>
                 </p>
                 <div className="center">
@@ -22,7 +46,15 @@ function Home() {
                     height="150"
                   /> */}
                 </div>
-                <p>User Bio</p>
+                <p
+                  style={{
+                    textAlign: "center",
+                    fontFamily: "Arial, sans-serif",
+                    fontSize: "16px",
+                  }}
+                >
+                  User Bio
+                </p>
               </div>
             </div>
           </div>

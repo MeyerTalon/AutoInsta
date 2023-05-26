@@ -1,42 +1,51 @@
-import logo from "./logo.svg";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
+import Login from "./pages/Login";
 import Home from "./pages/Home";
-import Matchup from "./pages/Matchup";
-import Vote from "./pages/Vote";
-import NotFound from "./pages/NotFound";
-
+import Signup from "./pages/Signup";
 import "./App.css";
-
-//HEHE
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <header>
+        <nav
+          style={{ backgroundColor: "#2388dc" }}
+          className="navbar navbar-expand-lg navbar-light"
         >
-          Learn React
-        </a>
+          <a
+            className="navbar-brand"
+            href="/"
+            style={{
+              fontFamily: "Arial, sans-serif",
+              fontWeight: "bold",
+              color: "white",
+            }}
+          >
+            AutoInsta
+          </a>
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link
+                className="nav-link"
+                to="/"
+                style={{
+                  fontFamily: "Arial, sans-serif",
+                  color: "black",
+                  fontWeight: "bold",
+                  textDecoration: "none",
+                }}
+              >
+                Home
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </header>
-      <Router>
-        <div className="flex-column justify-center align-center min-100-vh bg-primary">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/matchup" element={<Matchup />} />
-            <Route path="/matchup/:id" element={<Vote />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-      </Router>
-    </div>
+      <body>
+        <Home />
+      </body>
+    </>
   );
 }
 
