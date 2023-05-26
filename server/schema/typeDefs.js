@@ -37,7 +37,7 @@ const typeDefs = gql`
         addUser(username: String, email: String!, password: String!): Auth
         savePost(postData: PostInput!): User
         removeBook(_id: ID!): User
-        editPost(postData: PostInput!): USer
+        editPost(postData: PostInput!): User
     }
 `;
 
