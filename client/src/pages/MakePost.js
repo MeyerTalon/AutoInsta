@@ -1,6 +1,6 @@
 import React from "react";
 
-function Home() {
+function MakePost() {
   return (
     <>
       <div className="container">
@@ -64,4 +64,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default MakePost;
