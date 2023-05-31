@@ -3,6 +3,8 @@ import { Link, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import LandingPage from "./pages/LandingPage";
 import Signup from "./pages/Signup";
+import Contact from "./pages/Contact";
+import MakePost from "./pages/MakePost";
 import "./App.css";
 
 function App() {
@@ -11,9 +13,9 @@ function App() {
       <header>
         <nav>
           <div className="nav-wrapper teal lighten-2">
-            <a href="#!" className="brand-logo">
+            <Link to="/" className="brand-logo" style={{ fontFamily: "Kubit" }}>
               AutoInsta
-            </a>
+            </Link>
             <a href="#!" data-target="mobile-nav" className="sidenav-trigger">
               <i className="material-icons">menu</i>
             </a>
@@ -22,7 +24,7 @@ function App() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/create-post">Make Post</Link>
+                <Link to="/makepost">Make Post</Link>
               </li>
               <li>
                 <Link to="/contact">Contact Us</Link>
@@ -33,7 +35,7 @@ function App() {
                 </Link>
               </li>
               <li>
-                <Link to="/Signup" className="waves-effect waves-light btn">
+                <Link to="/signup" className="waves-effect waves-light btn">
                   SignUp
                 </Link>
               </li>
@@ -44,8 +46,10 @@ function App() {
       <body>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/makepost" element={<MakePost />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </body>
     </>
