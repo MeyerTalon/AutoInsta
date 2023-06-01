@@ -30,28 +30,40 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        // saveBook: async (parent, { bookData }, context) => {
-        //     if (context.user) {
-        //         const updatedUser = await User.findOneAndUpdate(
-        //             { _id: context.user._id },
-        //             { $addToSet: { savedBooks: bookData }},
-        //             { new: true },
-        //         ).populate('savedBooks');
-        //         return updatedUser;
-        //     }
-        //     throw new AuthenticationError("Must be logged in.");
-        // },
-        // removeBook: async (parent, { bookId }, context) => {
-        //     if (context.user) {
-        //         const updatedUser = await User.findOneAndUpdate(
-        //             { _id: context.user._id },
-        //             { $pull: { savedBooks : { bookId: bookId }}},
-        //             { new: true }
-        //         ).populate('savedBooks');;
-        //         return updatedUser;
-        //     }
-        //     throw new AuthenticationError("Must be logged in.");
-        // }
+        savePost: async (parent, { postData }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { posts: postData }},
+                    { new: true },
+                ).populate('posts');
+                return updatedUser;
+            }
+            throw new AuthenticationError("Must be logged in.");
+        },
+        removePost: async (parent, { postId }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { posts : { _id: postId }}},
+                    { new: true }
+                ).populate('posts');;
+                return updatedUser;
+            }
+            throw new AuthenticationError("Must be logged in.");
+        },
+        editPost: async (parent, { postData }, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { posts : { _id: postData._id }}},
+                    { $addToSet: { posts: postData }},
+                    { new: true },
+                ).populate('posts');
+                return updatedUser;
+            }
+            throw new AuthenticationError("Must be logged in.");
+        },
     }
 };
 

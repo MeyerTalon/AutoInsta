@@ -38,7 +38,7 @@ const userSchema = new Schema(
   }
 );
 
-// hash user password
+// hash user password and insta password
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
