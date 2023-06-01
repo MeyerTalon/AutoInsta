@@ -9,6 +9,8 @@ function Signup() {
     username: "",
     email: "",
     password: "",
+    instagramUsername: "",
+    instagramPassword: "",
   });
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -41,7 +43,13 @@ function Signup() {
       setShowAlert(true);
     }
 
-    setUserFormData({ username: "", email: "", password: "" });
+    setUserFormData({
+      username: "",
+      email: "",
+      password: "",
+      instagramUsername: "",
+      instagramPassword: "",
+    });
   };
 
   return (
@@ -51,7 +59,9 @@ function Signup() {
           <div className="col s12 m6 offset-m3">
             <div className="card">
               <div className="card-content">
-                <span className="card-title">Signup</span>
+                <div className="center-align">
+                  <span className="card-title">Signup</span>
+                </div>
                 <div className="row">
                   <Form
                     noValidate
@@ -70,7 +80,7 @@ function Signup() {
                         />
                         <Form.Label htmlFor="username">Username</Form.Label>
                         <Form.Control.Feedback type="invalid">
-                          Username is required!
+                          {!userFormData.username && "Username is required!"}
                         </Form.Control.Feedback>
                       </div>
                     </div>
@@ -86,7 +96,7 @@ function Signup() {
                         />
                         <Form.Label htmlFor="email">Email</Form.Label>
                         <Form.Control.Feedback type="invalid">
-                          Email is required!
+                          {!userFormData.email && "Email is required!"}
                         </Form.Control.Feedback>
                       </div>
                     </div>
@@ -102,7 +112,45 @@ function Signup() {
                         />
                         <Form.Label htmlFor="password">Password</Form.Label>
                         <Form.Control.Feedback type="invalid">
-                          Password is required!
+                          {!userFormData.password && "Password is required!"}
+                        </Form.Control.Feedback>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <Form.Control
+                          id="instagramUsername"
+                          type="text"
+                          name="instagramUsername"
+                          value={userFormData.instagramUsername}
+                          onChange={handleInputChange}
+                          required
+                        />
+                        <Form.Label htmlFor="instagramUsername">
+                          Instagram Username
+                        </Form.Label>
+                        <Form.Control.Feedback type="invalid">
+                          {!userFormData.instagramUsername &&
+                            "Instagram username is required!"}
+                        </Form.Control.Feedback>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <Form.Control
+                          id="instagramPassword"
+                          type="password"
+                          name="instagramPassword"
+                          value={userFormData.instagramPassword}
+                          onChange={handleInputChange}
+                          required
+                        />
+                        <Form.Label htmlFor="instagramPassword">
+                          Instagram Password
+                        </Form.Label>
+                        <Form.Control.Feedback type="invalid">
+                          {!userFormData.instagramPassword &&
+                            "Instagram password is required!"}
                         </Form.Control.Feedback>
                       </div>
                     </div>
@@ -116,7 +164,9 @@ function Signup() {
                             !(
                               userFormData.username &&
                               userFormData.email &&
-                              userFormData.password
+                              userFormData.password &&
+                              userFormData.instagramUsername &&
+                              userFormData.instagramPassword
                             )
                           }
                         >
