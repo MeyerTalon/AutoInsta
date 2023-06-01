@@ -23,3 +23,48 @@ export const ADD_USER = gql`
         }
     }
 `;
+
+export const SAVE_POST = gql`
+    mutation savePost($postData: PostInput!) {
+        savePost(postData: $postData) {
+            username
+            email
+            posts {
+              _id
+              caption
+              title
+              image
+            }
+        }
+    }
+`;
+
+export const REMOVE_POST = gql`
+    mutation removePost($postId: ID!) {
+        removeBook(_id: $postId) {
+            username
+            email
+            posts {
+              _id
+              caption
+              title
+              image
+            }
+        }
+    }
+`;
+
+export const EDIT_POST = gql`
+    mutation savePost($postData: PostInput!) {
+        savePost(postData: $postData) {
+            username
+            email
+            posts {
+              _id
+              caption
+              title
+              image
+            }
+        }
+    }
+`;
