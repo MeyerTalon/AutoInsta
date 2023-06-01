@@ -13,7 +13,11 @@ function App() {
       <header>
         <nav>
           <div className="nav-wrapper teal lighten-2">
-            <Link to="/" className="brand-logo" style={{ fontFamily: "Kubit" }}>
+            <Link
+              to="/"
+              className="brand-logo"
+              style={{ fontFamily: "Comfortaa", paddingLeft: "10px" }}
+            >
               AutoInsta
             </Link>
             <a href="#!" data-target="mobile-nav" className="sidenav-trigger">
@@ -44,6 +48,9 @@ function App() {
         </nav>
       </header>
       <body>
+        <style>
+          {`@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');`}
+        </style>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/makepost" element={<MakePost />} />
