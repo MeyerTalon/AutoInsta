@@ -6,7 +6,7 @@ import Auth from "../utils/auth";
 
 function Login() {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
-  const [validated] = useState(false);
+  const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [login, { error }] = useMutation(LOGIN_USER);
 
@@ -18,12 +18,12 @@ function Login() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
     }
+
+    setValidated(true);
 
     try {
       const { data } = await login({
@@ -49,7 +49,9 @@ function Login() {
           <div className="col s12 m6 offset-m3">
             <div className="card">
               <div className="card-content">
-                <span className="card-title">Login</span>
+                <div className="center-align">
+                  <span className="card-title">Login</span>
+                </div>
                 <Form
                   noValidate
                   validated={validated}
@@ -74,7 +76,7 @@ function Login() {
                         required
                       />
                       <Form.Control.Feedback type="invalid">
-                        Email is required!
+                        {!userFormData.email && "Email is required!"}
                       </Form.Control.Feedback>
                     </div>
                   </div>
@@ -89,7 +91,7 @@ function Login() {
                         required
                       />
                       <Form.Control.Feedback type="invalid">
-                        Password is required!
+                        {!userFormData.password && "Password is required!"}
                       </Form.Control.Feedback>
                     </div>
                   </div>
