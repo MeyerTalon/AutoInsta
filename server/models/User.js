@@ -22,12 +22,10 @@ const userSchema = new Schema(
     instaUsername: {
       type: String,
       required: true,
-      unique: true,
     },
     instaPassword: {
       type: String,
       required: true,
-      unique: true,
     },
     posts: [postSchema],
   },

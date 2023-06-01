@@ -23,7 +23,7 @@ export const getPostIds = () => {
       return false;
     }
   
-    const updatedSavedPostIds = savedPostIds?.filter((savedBookId) => savedBookId !== bookId);
+    const updatedSavedPostIds = savedPostIds?.filter((savedPostId) => savedPostId !== postId);
     localStorage.setItem('posts', JSON.stringify(updatedSavedPostIds));
   
     return true;
