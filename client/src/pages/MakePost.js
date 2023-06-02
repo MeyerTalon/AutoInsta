@@ -1,28 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useMutation } from '@apollo/client';
+import Auth from '../utils/auth';
+import { SAVE_POST } from '../utils/mutations';
+import { savePostIds, getSavedPostIds } from '../utils/localStorage';
+
 
 function MakePost() {
+
   const [image, setImage] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [selectedInterval, setSelectedInterval] = useState("");
-  const [username, setUsername] = useState("");
+  const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
+
+  const [savedPostIds, setSavedPostIds] = useState(getSavedPostIds());
+
+  const [savePost, { error }] = useMutation(SAVE_POST);
+
+  useEffect(() => {
+    return () => savePostIds(savedPostIds);
+  });
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImage(reader.result);
+      setImage(reader.result); // ?
     };
     if (file) {
       reader.readAsDataURL(file);
     }
   };
 
-  const handlePost = () => {
+  const handlePost = async () => {
     // Handle post functionality
-    console.log("Post clicked!");
+    const postToSave = {
+      caption: caption,
+      imageFile: image,
+      title: title
+    };
+
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const { data } = await savePost({
+        variables: { postData: postToSave },
+      });
+      setSavedPostIds([...savedPostIds, postToSave._id]);
+    } catch(error) {
+      console.log(error);
+    }
   };
+
 
   return (
     <div className="container">
@@ -33,11 +67,11 @@ function MakePost() {
               <h5 className="card-title center-align">Create Post</h5>
               <div className="row center-align">
                 <div className="col s12 m6 offset-m3">
-                  <label>Username</label>
+                  <label>Title</label>
                   <input
                     type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     className="center-align"
                   />
                 </div>
@@ -147,7 +181,7 @@ function MakePost() {
                       !selectedDate ||
                       !selectedTime ||
                       !selectedInterval ||
-                      !username ||
+                      !title ||
                       !caption
                     }
                     style={{ marginBottom: "0" }}

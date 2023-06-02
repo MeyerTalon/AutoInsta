@@ -3,7 +3,7 @@ const { gql } = require('apollo-server-express');;
 const typeDefs = gql`
 
     type User {
-        _id: ID!
+        _id: ID
         username: String!
         email: String!
         instaUsername: String!
@@ -12,10 +12,10 @@ const typeDefs = gql`
     }
 
     type Post {
-        _id: ID!
+        _id: ID
         caption: String!
         title: String!
-        image: String!
+        imageFile: String!
     }
 
     type Auth {
@@ -24,10 +24,10 @@ const typeDefs = gql`
     }
 
     input PostInput {
-        _id: ID!
+        _id: ID
         caption: String!
         title: String!
-        image: String!
+        imageFile: String!
     }
 
     type Query {
