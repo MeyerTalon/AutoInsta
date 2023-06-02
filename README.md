@@ -1,6 +1,6 @@
-# AutoInsta <!-- omit in toc -->
+# AutoInsta
 
-    For our project, we decided to create an Instagram post automater that will allow the user to schedule and automate their posts. For instance, if someone wants to make a post for their friend’s birthday but is worried they will forget, they can use our website to automate the process. This is a web application designed to help individuals schedule and automate posting to Instagram. It allows users to create posts, schedule their upload time, and manage their upcoming and past scheduled posts. By using this app, users can ensure they never forget an important post and save time by avoiding repetitive posting.
+For our project, we decided to create an Instagram post automater that will allow the user to schedule and automate their posts. For instance, if someone wants to make a post for their friend’s birthday but is worried they will forget, they can use our website to automate the process. This is a web application designed to help individuals schedule and automate posting to Instagram. It allows users to create posts, schedule their upload time, and manage their upcoming and past scheduled posts. By using this app, users can ensure they never forget an important post and save time by avoiding repetitive posting.
 
 - [Installation✨](#installation✨)
 - [Setup✨](#setup✨)
