@@ -35,6 +35,12 @@ function MakePost() {
 
   const handlePost = async () => {
     // Handle post functionality
+    console.log(caption);
+    console.log(image);
+    console.log(title);
+    console.log(selectedDate);
+    console.log(selectedTime);
+    console.log(selectedInterval);
     const postToSave = {
       caption: caption,
       imageFile: image,
