@@ -5,6 +5,7 @@ import Signup from "./pages/Signup";
 import Contact from "./pages/Contact";
 import MakePost from "./pages/MakePost";
 import Auth from "./utils/auth";
+import Profile from "./pages/Profile"
 import "./App.css";
 
 import {
@@ -36,6 +37,9 @@ const client = new ApolloClient({
 });
 
 function App() {
+
+  
+
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -61,6 +65,9 @@ function App() {
                 </li>
                 <li>
                   <Link to="/contact">Contact Us</Link>
+                </li>
+                <li>
+                  <Link to="/profile">Profile</Link>
                 </li>
                 {Auth.loggedIn() ? (
                   <>
@@ -100,6 +107,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/makepost" element={<MakePost />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
