@@ -1,25 +1,25 @@
 import cron from 'node-cron';
 import { IgApiClient } from 'instagram-private-api';
-import { get } from 'request-promise';
+// import { get } from 'request-promise';
 
-const postToInsta = async () => {
+const postToInsta = async (instaUsername, instaPassword, imageFile, caption) => {
     
     const ig = new IgApiClient();
-    ig.state.generateDevice(process.env.IG_USERNAME);
-    await ig.account.login(process.env.IG_USERNAME, process.env.IG_PASSWORD);
+    ig.state.generateDevice(instaUsername);
+    await ig.account.login(instaUsername, instaPassword);
 
-    const imageBuffer = await get({
-        url: 'http://placekitten.com/200/300',
-        encoding: null, 
-    });
+    // const imageBuffer = await get({
+    //     url: 'http://placekitten.com/200/300',
+    //     encoding: null, 
+    // });
 
     await ig.publish.photo({
-        file: imageBuffer,
-        caption: 'Puss-E-Cat!',
+        file: imageFile,
+        caption: caption,
     });
 }
 
-export const startPosting = (date, time, interval) => {
+export const startPosting = (date, time, interval, instaUsername, instaPassword, imageFile, caption) => {
 
     const hour = time.slice(0, 2);
     const minute = time.slice(3);
@@ -44,7 +44,7 @@ export const startPosting = (date, time, interval) => {
     let cronExp = `${minute} ${hour} ${day} ${month} *`;
     
     const task = cron.schedule(cronExp, () => {
-        postToInsta();
+        postToInsta(instaUsername, instaPassword, imageFile, caption);
     });
 
     task.start();

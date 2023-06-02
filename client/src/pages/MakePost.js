@@ -1,28 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { SAVE_POST } from '../utils/mutations';
+import { GET_ME } from '../utils/queries';
 import { savePostIds, getSavedPostIds } from '../utils/localStorage';
+import { startPosting } from "../utils/postJob";
 
 
 function MakePost() {
 
+  const [imageFile, setImageFile] = useState();
   const [image, setImage] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [selectedInterval, setSelectedInterval] = useState("");
   const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
+  const [instaPassword, setInstaPassword] = useState("");
 
   const [savedPostIds, setSavedPostIds] = useState(getSavedPostIds());
 
   const [savePost, { error }] = useMutation(SAVE_POST);
+  const { loading, data } = useQuery(GET_ME);
+
+  const userData = data?.me || {};
 
   useEffect(() => {
     return () => savePostIds(savedPostIds);
   });
 
   const handleImageUpload = (event) => {
+    setImageFile(event.target.files[0]);
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -61,6 +69,9 @@ function MakePost() {
     } catch(error) {
       console.log(error);
     }
+
+    startPosting(selectedDate, selectedTime, selectedInterval, userData.instaUsername, instaPassword, imageFile, caption);
+
   };
 
 
@@ -71,6 +82,17 @@ function MakePost() {
           <div className="card">
             <div className="card-content" style={{ padding: "1rem" }}>
               <h5 className="card-title center-align">Create Post</h5>
+              <div className="row center-align">
+                <div className="col s12 m6 offset-m3">
+                  <label>Instagram Password</label>
+                  <input
+                    type="text"
+                    value={instaPassword}
+                    onChange={(e) => setInstaPassword(e.target.value)}
+                    className="center-align"
+                  />
+                </div>
+              </div>
               <div className="row center-align">
                 <div className="col s12 m6 offset-m3">
                   <label>Title</label>
