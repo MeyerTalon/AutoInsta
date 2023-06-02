@@ -4,7 +4,7 @@ import Auth from '../utils/auth';
 import { SAVE_POST } from '../utils/mutations';
 import { GET_ME } from '../utils/queries';
 import { savePostIds, getSavedPostIds } from '../utils/localStorage';
-import { startPosting } from "../utils/postJob";
+import  { startPosting }  from "../utils/postJob";
 
 
 function MakePost() {
@@ -70,7 +70,7 @@ function MakePost() {
       console.log(error);
     }
 
-    startPosting(selectedDate, selectedTime, selectedInterval, userData.instaUsername, instaPassword, imageFile, caption);
+    // startPosting(selectedDate, selectedTime, selectedInterval, userData.instaUsername, instaPassword, imageFile, caption);
 
   };
 

@@ -1,6 +1,10 @@
 import cron from 'node-cron';
 import { IgApiClient } from 'instagram-private-api';
-// import { get } from 'request-promise';
+import { get } from 'request-promise';
+
+// const cron = require('node-cron');
+// const { IgApiClient } = require('instagram-private-api');
+// const { get } = require('request-promise');
 
 const postToInsta = async (instaUsername, instaPassword, imageFile, caption) => {
     
@@ -8,23 +12,23 @@ const postToInsta = async (instaUsername, instaPassword, imageFile, caption) => 
     ig.state.generateDevice(instaUsername);
     await ig.account.login(instaUsername, instaPassword);
 
-    // const imageBuffer = await get({
-    //     url: 'http://placekitten.com/200/300',
-    //     encoding: null, 
-    // });
+    const imageBuffer = await get({
+        url: 'http://placekitten.com/200/300',
+        encoding: null, 
+    });
 
     await ig.publish.photo({
-        file: imageFile,
+        file: imageBuffer,
         caption: caption,
     });
 }
 
 export const startPosting = (date, time, interval, instaUsername, instaPassword, imageFile, caption) => {
 
-    const hour = time.slice(0, 2);
-    const minute = time.slice(3);
-    const day = date.slice(5, 7);
-    const month = date.slice(8);
+    let hour = time.slice(0, 2);
+    let minute = time.slice(3);
+    let day = date.slice(5, 7);
+    let month = date.slice(8);
 
     if (interval === '1 day') {
         day = day + '/1';
