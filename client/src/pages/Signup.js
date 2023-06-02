@@ -9,8 +9,8 @@ function Signup() {
     username: "",
     email: "",
     password: "",
-    instagramUsername: "",
-    instagramPassword: "",
+    instaUsername: "",
+    instaPassword: "",
   });
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -36,7 +36,7 @@ function Signup() {
       const { data } = await addUser({
         variables: { ...userFormData },
       });
-
+      console.log(data);
       Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
@@ -47,8 +47,8 @@ function Signup() {
       username: "",
       email: "",
       password: "",
-      instagramUsername: "",
-      instagramPassword: "",
+      instaUsername: "",
+      instaPassword: "",
     });
   };
 
@@ -119,18 +119,18 @@ function Signup() {
                     <div className="row">
                       <div className="input-field col s12">
                         <Form.Control
-                          id="instagramUsername"
+                          id="instaUsername"
                           type="text"
-                          name="instagramUsername"
-                          value={userFormData.instagramUsername}
+                          name="instaUsername"
+                          value={userFormData.instaUsername}
                           onChange={handleInputChange}
                           required
                         />
-                        <Form.Label htmlFor="instagramUsername">
+                        <Form.Label htmlFor="instaUsername">
                           Instagram Username
                         </Form.Label>
                         <Form.Control.Feedback type="invalid">
-                          {!userFormData.instagramUsername &&
+                          {!userFormData.instaUsername &&
                             "Instagram username is required!"}
                         </Form.Control.Feedback>
                       </div>
@@ -138,18 +138,18 @@ function Signup() {
                     <div className="row">
                       <div className="input-field col s12">
                         <Form.Control
-                          id="instagramPassword"
+                          id="instaPassword"
                           type="password"
-                          name="instagramPassword"
-                          value={userFormData.instagramPassword}
+                          name="instaPassword"
+                          value={userFormData.instaPassword}
                           onChange={handleInputChange}
                           required
                         />
-                        <Form.Label htmlFor="instagramPassword">
+                        <Form.Label htmlFor="instaPassword">
                           Instagram Password
                         </Form.Label>
                         <Form.Control.Feedback type="invalid">
-                          {!userFormData.instagramPassword &&
+                          {!userFormData.instaPassword &&
                             "Instagram password is required!"}
                         </Form.Control.Feedback>
                       </div>
@@ -165,8 +165,8 @@ function Signup() {
                               userFormData.username &&
                               userFormData.email &&
                               userFormData.password &&
-                              userFormData.instagramUsername &&
-                              userFormData.instagramPassword
+                              userFormData.instaUsername &&
+                              userFormData.instaPassword
                             )
                           }
                         >
