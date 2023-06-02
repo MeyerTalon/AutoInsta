@@ -4,14 +4,20 @@ import LandingPage from "./pages/LandingPage";
 import Signup from "./pages/Signup";
 import Contact from "./pages/Contact";
 import MakePost from "./pages/MakePost";
+import Auth from "./utils/auth";
 import "./App.css";
 
-import { ApolloClient, InMemoryCache, createHttpLink, ApolloProvider } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  createHttpLink,
+  ApolloProvider,
+} from "@apollo/client";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { setContext } from '@apollo/client/link/context';
+import { setContext } from "@apollo/client/link/context";
 
 const httpLink = createHttpLink({
-  uri:'/graphql',
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -56,16 +62,32 @@ function App() {
                 <li>
                   <Link to="/contact">Contact Us</Link>
                 </li>
-                <li>
-                  <Link to="/login" className="waves-effect waves-light btn">
-                    Login
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/signup" className="waves-effect waves-light btn">
-                    SignUp
-                  </Link>
-                </li>
+                {Auth.loggedIn() ? (
+                  <>
+                    <li>
+                      <Link
+                        to="/login"
+                        className="waves-effect waves-light btn"
+                      >
+                        Login
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/signup"
+                        className="waves-effect waves-light btn"
+                      >
+                        SignUp
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <Link onClick={() => Auth.logout()}>Logout</Link>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
           </nav>
