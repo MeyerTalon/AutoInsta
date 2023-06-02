@@ -6,11 +6,13 @@ export const GET_ME = gql`
             _id
             username
             email
+            instaUsername
+            instaPassword
             posts {
                 _id
                 caption
                 title
-                image
+                imageFile
             }
         }
     }

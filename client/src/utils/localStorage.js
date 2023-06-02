@@ -1,4 +1,4 @@
-export const getPostIds = () => {
+export const getSavedPostIds = () => {
     const savedPostIds = localStorage.getItem('posts')
       ? JSON.parse(localStorage.getItem('posts'))
       : [];
@@ -6,7 +6,7 @@ export const getPostIds = () => {
     return savedPostIds;
   };
   
-  export const savePostId = (postIdArr) => {
+  export const savePostIds = (postIdArr) => {
     if (postIdArr.length) {
       localStorage.setItem('posts', JSON.stringify(postIdArr));
     } else {

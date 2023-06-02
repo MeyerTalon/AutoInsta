@@ -33,7 +33,7 @@ export const SAVE_POST = gql`
               _id
               caption
               title
-              image
+              imageFile
             }
         }
     }
@@ -48,7 +48,7 @@ export const REMOVE_POST = gql`
               _id
               caption
               title
-              image
+              imageFile
             }
         }
     }
@@ -63,7 +63,7 @@ export const EDIT_POST = gql`
               _id
               caption
               title
-              image
+              imageFile
             }
         }
     }
