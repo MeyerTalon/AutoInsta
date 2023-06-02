@@ -65,6 +65,12 @@ function App() {
                 {Auth.loggedIn() ? (
                   <>
                     <li>
+                      <Link onClick={() => Auth.logout()}>Logout</Link>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
                       <Link
                         to="/login"
                         className="waves-effect waves-light btn"
@@ -79,12 +85,6 @@ function App() {
                       >
                         SignUp
                       </Link>
-                    </li>
-                  </>
-                ) : (
-                  <>
-                    <li>
-                      <Link onClick={() => Auth.logout()}>Logout</Link>
                     </li>
                   </>
                 )}
