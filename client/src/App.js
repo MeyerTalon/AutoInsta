@@ -5,9 +5,13 @@ import LandingPage from "./pages/LandingPage";
 import Signup from "./pages/Signup";
 import Contact from "./pages/Contact";
 import MakePost from "./pages/MakePost";
+import Profile from "./pages/Profile"
 import "./App.css";
 
 function App() {
+
+  
+
   return (
     <>
       <header>
@@ -29,6 +33,9 @@ function App() {
               </li>
               <li>
                 <Link to="/makepost">Make Post</Link>
+              </li>
+              <li>
+                <Link to="/profile">Profile</Link>
               </li>
               <li>
                 <Link to="/contact">Contact Us</Link>
@@ -55,6 +62,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/makepost" element={<MakePost />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

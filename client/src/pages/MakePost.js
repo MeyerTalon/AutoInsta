@@ -128,6 +128,7 @@ function MakePost() {
                     style={{ width: "50%", margin: "0 auto" }}
                   >
                     <option value="">Choose Interval</option>
+                    <option value="Once">Just Once</option>
                     <option value="1 day">1 day</option>
                     <option value="1 week">1 week</option>
                     <option value="1 month">1 month</option>
