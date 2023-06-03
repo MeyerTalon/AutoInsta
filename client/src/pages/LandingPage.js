@@ -5,6 +5,15 @@ const LandingPage = () => {
     <div>
       <div class="container">
         <section className="hero">
+          <div class="center-align">
+            <div class="">
+              <img
+                class="circle responsive-img"
+                src="https://s.tmimgcdn.com/scr/800x500/301700/community-network-and-social-health-logo-icon-design-template-v-8_301741-original.jpg"
+                alt="Description of the image"
+              />
+            </div>
+          </div>
           <div class="row" className="hero-content">
             <div class="row">
               <div class="center-align">
