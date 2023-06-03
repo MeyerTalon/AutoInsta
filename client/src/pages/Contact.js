@@ -1,19 +1,46 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { send } from 'emailjs-com';
 
 function ContactUs() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+
+  const [toSend, setToSend] = useState({
+    from_name: '',
+    to_name: 'AutoInsta Team',
+    message: '',
+    reply_to: '',
+  });
+
+  const [sentMessage, setSentMessage] = useState(<p></p>);
+
+  const handleChange = (e) => {
+    setToSend({ ...toSend, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // necessary logic for handling the form submission
     // access the form data using the username, email, and message state variables
-    console.log("Submitted:", { username, email, message });
-    // Reset the form fields
-    setUsername("");
-    setEmail("");
-    setMessage("");
+    console.log("Submitted:", { ...toSend });
+
+    send(
+      'service_b95yus9',
+      'template_klxxdxr',
+      toSend,
+      'fKepqLb4KSa9fdlEn'
+    )
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+      })
+      .then((setSentMessage(<p>Your message has been sent to the AutoInsta Team!</p>)))
+      .then(setToSend({
+        from_name: '',
+        to_name: 'AutoInsta Team',
+        message: '',
+        reply_to: '',
+      }))
+      .catch((err) => {
+        console.log('FAILED...', err);
+      });
   };
 
   return (
@@ -29,35 +56,39 @@ function ContactUs() {
                     <div className="row">
                       <div className="input-field col s12">
                         <input
-                          id="username"
+                          id="from_name"
                           type="text"
+                          name="from_name"
                           className="validate"
-                          value={username}
-                          onChange={(e) => setUsername(e.target.value)}
+                          value={toSend.from_name}
+                          onChange={handleChange}
                         />
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="from_name">Name</label>
                       </div>
                     </div>
                     <div className="row">
                       <div className="input-field col s12">
                         <input
-                          id="email"
+                          id="reply_to"
                           type="email"
+                          name="reply_to"
                           className="validate"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
+                          value={toSend.reply_to}
+                          onChange={handleChange}
                         />
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="reply_to">Email</label>
                       </div>
                     </div>
                     <div className="row">
                       <div className="input-field col s12">
-                        <textarea
+                        <input
                           id="message"
-                          className="materialize-textarea"
-                          value={message}
-                          onChange={(e) => setMessage(e.target.value)}
-                        ></textarea>
+                          type="text"
+                          name="message"
+                          className="validate"
+                          value={toSend.message}
+                          onChange={handleChange}
+                        />
                         <label htmlFor="message">Message</label>
                       </div>
                     </div>
@@ -70,6 +101,7 @@ function ContactUs() {
                         >
                           Submit
                         </button>
+                        {sentMessage}
                       </div>
                     </div>
                   </form>

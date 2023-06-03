@@ -20,7 +20,8 @@
     "web-vitals": "^3.3.1",
     "instagram-private-api": "^1.45.3",
     "request-promise": "^4.2.6",
-    "bcrypt": "^5.1.0"
+    "bcrypt": "^5.1.0",
+    "emailjs-com": "^3.2.0"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
