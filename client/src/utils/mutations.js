@@ -25,8 +25,8 @@ export const ADD_USER = gql`
 `;
 
 export const SAVE_POST = gql`
-    mutation savePost($postData: PostInput!) {
-        savePost(postData: $postData) {
+    mutation savePost($postData: PostInput!, $instaPassword: String!) {
+        savePost(postData: $postData, instaPassword: $instaPassword) {
             username
             email
             posts {

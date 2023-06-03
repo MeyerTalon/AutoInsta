@@ -1,6 +1,7 @@
 const { User } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+const { postToInsta, instaJob } = require('../utils/postJob');
 
 const resolvers = {
     Query: {
@@ -30,13 +31,24 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        savePost: async (parent, { postData }, context) => {
+        savePost: async (parent, { postData, instaPassword }, context) => {
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { posts: postData }},
                     { new: true },
                 ).populate('posts');
+
+                await instaJob(
+                    postData.time, 
+                    postData.date, 
+                    postData.interval, 
+                    updatedUser.instaUsername, 
+                    instaPassword, 
+                    postData.imageFile, 
+                    postData.caption
+                ); 
+
                 return updatedUser;
             }
             throw new AuthenticationError("Must be logged in.");

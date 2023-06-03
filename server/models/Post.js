@@ -13,6 +13,15 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
+  time: {
+    type: String
+  },
+  date: {
+    type: String
+  },
+  interval: {
+    type: String
+  }
 });
 
 module.exports = postSchema;

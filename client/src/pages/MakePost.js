@@ -4,7 +4,6 @@ import Auth from '../utils/auth';
 import { SAVE_POST } from '../utils/mutations';
 import { GET_ME } from '../utils/queries';
 import { savePostIds, getSavedPostIds } from '../utils/localStorage';
-import  { startPosting }  from "../utils/postJob";
 
 
 function MakePost() {
@@ -34,7 +33,7 @@ function MakePost() {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onloadend = () => {
-      setImage(reader.result); // ?
+      setImage(reader.result);
     };
     if (file) {
       reader.readAsDataURL(file);
@@ -49,10 +48,19 @@ function MakePost() {
     console.log(selectedDate);
     console.log(selectedTime);
     console.log(selectedInterval);
+
     const postToSave = {
       caption: caption,
       imageFile: image,
-      title: title
+      title: title,
+      time: selectedTime,
+      date: selectedDate,
+      interval: selectedInterval,
+    };
+
+    const postDataInput = {
+      postData: postToSave,
+      instaPassword: instaPassword
     };
 
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -63,14 +71,12 @@ function MakePost() {
 
     try {
       const { data } = await savePost({
-        variables: { postData: postToSave },
+        variables: { ...postDataInput },
       });
       setSavedPostIds([...savedPostIds, postToSave._id]);
     } catch(error) {
       console.log(error);
     }
-
-    // startPosting(selectedDate, selectedTime, selectedInterval, userData.instaUsername, instaPassword, imageFile, caption);
 
   };
 
