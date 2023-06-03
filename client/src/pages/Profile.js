@@ -22,27 +22,27 @@ function ProfilePage() {
     try {
       const { data } = await removePost({
         variables: { postId },
-        update(cache, { data }) {
-          // Remove the post from the cache after successful deletion
-          cache.modify({
-            fields: {
-              me(existingMeRef = {}) {
-                const newPostsAfterDeletion = data.removeBook.posts;
+        // update(cache, { data }) {
+        //   // Remove the post from the cache after successful deletion
+        //   cache.modify({
+        //     fields: {
+        //       me(existingMeRef = {}) {
+        //         const newPostsAfterDeletion = data.removePost.posts;
 
-                cache.writeFragment({
-                  data: { posts: newPostsAfterDeletion },
-                  fragment: gql`
-                    fragment UpdatedUserPosts on User {
-                      posts
-                    }
-                  `,
-                });
+        //         cache.writeFragment({
+        //           data: { posts: newPostsAfterDeletion },
+        //           fragment: gql`
+        //             fragment UpdatedUserPosts on User {
+        //               posts
+        //             }
+        //           `,
+        //         });
 
-                return existingMeRef;
-              },
-            },
-          });
-        },
+        //         return existingMeRef;
+        //       },
+        //     },
+        //   });
+        // },
       });
 
       // Remove the post's ID from localStorage
@@ -80,7 +80,8 @@ function ProfilePage() {
                 </a>
               </div>
               <div className="card-content">
-                <p>{post.caption}</p>
+                <p>Title: {post.title}</p>
+                <p>Caption: {post.caption}</p>
                 <p>Date: {post.date}</p>
                 <p>Time: {post.time}</p>
                 <p>Interval: {post.interval}</p>

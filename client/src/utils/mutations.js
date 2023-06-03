@@ -41,7 +41,7 @@ export const SAVE_POST = gql`
 
 export const REMOVE_POST = gql`
     mutation removePost($postId: ID!) {
-        removeBook(_id: $postId) {
+        removePost(_id: $postId) {
             username
             email
             posts {

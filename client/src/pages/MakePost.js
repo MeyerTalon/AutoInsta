@@ -9,7 +9,7 @@ import { savePostIds, getSavedPostIds } from '../utils/localStorage';
 function MakePost() {
 
   const [imageFile, setImageFile] = useState();
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [selectedInterval, setSelectedInterval] = useState("");
@@ -27,18 +27,6 @@ function MakePost() {
   useEffect(() => {
     return () => savePostIds(savedPostIds);
   });
-
-  const handleImageUpload = (event) => {
-    setImageFile(event.target.files[0]);
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImage(reader.result);
-    };
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handlePost = async () => {
     // Handle post functionality
@@ -74,6 +62,13 @@ function MakePost() {
         variables: { ...postDataInput },
       });
       setSavedPostIds([...savedPostIds, postToSave._id]);
+      setImage("");
+      setSelectedDate("");
+      setSelectedTime("");
+      setSelectedInterval("");
+      setTitle("");
+      setCaption("");
+      setInstaPassword("");
     } catch(error) {
       console.log(error);
     }
@@ -92,7 +87,7 @@ function MakePost() {
                 <div className="col s12 m6 offset-m3">
                   <label>Instagram Password</label>
                   <input
-                    type="text"
+                    type="password"
                     value={instaPassword}
                     onChange={(e) => setInstaPassword(e.target.value)}
                     className="center-align"
@@ -122,6 +117,17 @@ function MakePost() {
                 </div>
               </div>
               <div className="row center-align">
+                <div className="col s12 m6 offset-m3">
+                  <label>Image URL</label>
+                  <input
+                    type="text"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                    className="center-align"
+                  />
+                </div>
+              </div>
+              <div className="row center-align">
                 <div className="col s12">
                   {image && (
                     <img
@@ -143,24 +149,6 @@ function MakePost() {
                       margin: "0 auto",
                     }}
                   >
-                    <div className="btn">
-                      <span>Choose Image</span>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                      />
-                    </div>
-                    <div className="file-path-wrapper">
-                      <input
-                        className="file-path validate"
-                        type="text"
-                        style={{
-                          borderBottom: "1px solid #9e9e9e",
-                          marginBottom: "0",
-                        }}
-                      />
-                    </div>
                   </div>
                 </div>
               </div>
