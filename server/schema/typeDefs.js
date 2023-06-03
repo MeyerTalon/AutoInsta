@@ -16,6 +16,9 @@ const typeDefs = gql`
         caption: String!
         title: String!
         imageFile: String!
+        time: String
+        date: String
+        interval: String
     }
 
     type Auth {
@@ -28,6 +31,9 @@ const typeDefs = gql`
         caption: String!
         title: String!
         imageFile: String!
+        time: String
+        date: String
+        interval: String
     }
 
     type Query {
@@ -37,7 +43,7 @@ const typeDefs = gql`
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String, email: String!, password: String!, instaUsername: String!, instaPassword: String!): Auth
-        savePost(postData: PostInput!): User
+        savePost(postData: PostInput!, instaPassword: String!): User
         removePost(_id: ID!): User
         editPost(postData: PostInput!): User
     }

@@ -46,12 +46,15 @@ export const startPosting = (date, time, interval, instaUsername, instaPassword,
     }
 
     let cronExp = `${minute} ${hour} ${day} ${month} *`;
+    console.log(cronExp);
     
-    const task = cron.schedule(cronExp, () => {
-        postToInsta(instaUsername, instaPassword, imageFile, caption);
-    });
+    // const task = cron.schedule(`* * * * *`, () => {
+    //     postToInsta(instaUsername, instaPassword, imageFile, caption);
+    // });
+    postToInsta(instaUsername, instaPassword, imageFile, caption);
 
-    task.start();
+
+    // task.start();
 };
 
 
