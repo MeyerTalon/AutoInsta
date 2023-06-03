@@ -11,7 +11,7 @@ async function postToInsta(instaUsername, instaPassword, image, caption) {
         // const buffer = Buffer.from(image, "base64");
 
         const imageBuffer = await get({
-            url: 'http://placekitten.com/200/300',
+            url: image,
             encoding: null, 
         });
 
@@ -25,14 +25,15 @@ module.exports = {
     instaJob: async function(time, date, interval, instaUsername, instaPassword, image, caption) {
         let hour = time.slice(0, 2);
         let minute = time.slice(3);
-        let day = date.slice(5, 7);
-        let month = date.slice(8);
+        let day = date.slice(8);
+        let month = date.slice(5, 7);
 
         if (interval === '1 day') {
-            day = day + '/1';
+            day = '1/1';
+            month = '*';
         } else if (interval === '1 week') {
             day = day + '/7';
-            month = month + '/1'; 
+            month = '*'; 
         } else if (interval === '1 month') {
             month = month + '/1';
         } else if (interval === 'Every Other Month') {
@@ -45,11 +46,16 @@ module.exports = {
 
         let cronExp = `${minute} ${hour} ${day} ${month} *`;
         console.log(cronExp);
-
-        const task = new CronJob(`* * * * *`, async () => {
+        
+        if (interval === 'Just Once') {
             postToInsta(instaUsername, instaPassword, image, caption);
-        });
+        } else {
+            const task = new CronJob(cronExp, async () => {
+                postToInsta(instaUsername, instaPassword, image, caption);
+            });
 
-        task.start();
+            task.start();
+        }
+        
     },
 };
