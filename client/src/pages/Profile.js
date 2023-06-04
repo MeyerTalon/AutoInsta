@@ -31,9 +31,11 @@ function ProfilePage() {
     }
   };
 
+  //Comment for push
+
   return (
-    <div className="container">
-      <h2 style={{ textAlign: "center", fontFamily: 'Tsukimi Rounded', fontWeight: 300 }}>
+    <div className="container"> 
+      <h2 style={{ textAlign: "center", fontFamily: 'Tsukimi Rounded', fontWeight: 300 }}> 
         My Posts
       </h2>
       <style>
