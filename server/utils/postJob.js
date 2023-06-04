@@ -4,11 +4,12 @@ const { get } = require('request-promise');
 const fs = require('fs');
 
 async function postToInsta(instaUsername, instaPassword, image, caption) {
+    console.log(instaUsername);
+    console.log(instaPassword);
     const ig = new IgApiClient();
         ig.state.generateDevice(instaUsername);
         await ig.account.login(instaUsername, instaPassword);
 
-        // const buffer = Buffer.from(image, "base64");
 
         const imageBuffer = await get({
             url: image,
