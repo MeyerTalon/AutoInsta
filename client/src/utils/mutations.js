@@ -34,6 +34,9 @@ export const SAVE_POST = gql`
               caption
               title
               imageFile
+              date 
+              time
+              interval
             }
         }
     }
@@ -49,6 +52,9 @@ export const REMOVE_POST = gql`
               caption
               title
               imageFile
+              date 
+              time
+              interval
             }
         }
     }
@@ -64,6 +70,9 @@ export const EDIT_POST = gql`
               caption
               title
               imageFile
+              date 
+              time
+              interval
             }
         }
     }
