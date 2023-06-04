@@ -34,6 +34,9 @@ export const SAVE_POST = gql`
               caption
               title
               imageFile
+              date 
+              time
+              interval
             }
         }
     }
@@ -41,7 +44,7 @@ export const SAVE_POST = gql`
 
 export const REMOVE_POST = gql`
     mutation removePost($postId: ID!) {
-        removeBook(_id: $postId) {
+        removePost(_id: $postId) {
             username
             email
             posts {
@@ -49,6 +52,9 @@ export const REMOVE_POST = gql`
               caption
               title
               imageFile
+              date 
+              time
+              interval
             }
         }
     }
@@ -64,6 +70,9 @@ export const EDIT_POST = gql`
               caption
               title
               imageFile
+              date 
+              time
+              interval
             }
         }
     }

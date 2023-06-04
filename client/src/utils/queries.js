@@ -13,6 +13,9 @@ export const GET_ME = gql`
                 caption
                 title
                 imageFile
+                date
+                time
+                interval
             }
         }
     }
