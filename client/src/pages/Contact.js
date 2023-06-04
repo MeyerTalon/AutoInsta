@@ -31,13 +31,15 @@ function ContactUs() {
       .then((response) => {
         console.log('SUCCESS!', response.status, response.text);
       })
-      .then((setSentMessage(<p>Your message has been sent to the AutoInsta Team!</p>)))
-      .then(setToSend({
-        from_name: '',
-        to_name: 'AutoInsta Team',
-        message: '',
-        reply_to: '',
-      }))
+      .then(() => {
+        setSentMessage(<p>Your message has been sent to the AutoInsta Team!</p>);
+        setToSend({
+          from_name: '',
+          to_name: 'AutoInsta Team',
+          message: '',
+          reply_to: '',
+        });
+      })
       .catch((err) => {
         console.log('FAILED...', err);
       });
@@ -45,12 +47,16 @@ function ContactUs() {
 
   return (
     <>
+      
       <div className="container">
         <div className="row">
           <div className="col s12 m6 offset-m3">
             <div className="card">
               <div className="card-content">
-                <span className="card-title">Contact Us</span>
+              <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tsukimi+Rounded:wght@300&display=swap');
+      </style>
+                <span className="card-title" style={{ fontFamily: 'Tsukimi Rounded, sans-serif' }}>Contact Us</span>
                 <div className="row">
                   <form className="col s12" onSubmit={handleSubmit}>
                     <div className="row">

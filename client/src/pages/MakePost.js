@@ -77,147 +77,152 @@ function MakePost() {
 
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col s12 m8 offset-m2">
-          <div className="card">
-            <div className="card-content" style={{ padding: "1rem" }}>
-              <h5 className="card-title center-align">Create Post</h5>
-              <div className="row center-align">
-                <div className="col s12 m6 offset-m3">
-                  <label>Instagram Password</label>
-                  <input
-                    type="password"
-                    value={instaPassword}
-                    onChange={(e) => setInstaPassword(e.target.value)}
-                    className="center-align"
-                  />
-                </div>
-              </div>
-              <div className="row center-align">
-                <div className="col s12 m6 offset-m3">
-                  <label>Title</label>
-                  <input
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    className="center-align"
-                  />
-                </div>
-              </div>
-              <div className="row center-align">
-                <div className="col s12 m6 offset-m3">
-                  <label>Caption</label>
-                  <input
-                    type="text"
-                    value={caption}
-                    onChange={(e) => setCaption(e.target.value)}
-                    className="center-align"
-                  />
-                </div>
-              </div>
-              <div className="row center-align">
-                <div className="col s12 m6 offset-m3">
-                  <label>Image URL</label>
-                  <input
-                    type="text"
-                    value={image}
-                    onChange={(e) => setImage(e.target.value)}
-                    className="center-align"
-                  />
-                </div>
-              </div>
-              <div className="row center-align">
-                <div className="col s12">
-                  {image && (
-                    <img
-                      className="responsive-img"
-                      src={image}
-                      alt="User Image"
-                      style={{ marginBottom: "0" }}
+    <>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tsukimi+Rounded:wght@300&display=swap');
+      </style>
+      <div className="container">
+        <div className="row">
+          <div className="col s12 m8 offset-m2">
+            <div className="card">
+              <div className="card-content" style={{ padding: "1rem" }}>
+                <h5 className="card-title center-align" style={{ fontFamily: 'Tsukimi Rounded, sans-serif' }}>Create Post</h5>
+                <div className="row center-align">
+                  <div className="col s12 m6 offset-m3">
+                    <label>Instagram Password</label>
+                    <input
+                      type="password"
+                      value={instaPassword}
+                      onChange={(e) => setInstaPassword(e.target.value)}
+                      className="center-align"
                     />
-                  )}
-                </div>
-              </div>
-              <div className="row center-align">
-                <div className="col s12 m6 offset-m3">
-                  <div
-                    className="file-field input-field"
-                    style={{
-                      marginBottom: "0",
-                      width: "50%",
-                      margin: "0 auto",
-                    }}
-                  >
                   </div>
                 </div>
-              </div>
-              <div className="row center-align">
-                <div className="col s12 m6 offset-m3">
-                  <label>Date</label>
-                  <input
-                    type="date"
-                    value={selectedDate}
-                    onChange={(e) => setSelectedDate(e.target.value)}
-                    className="center-align"
-                  />
+                <div className="row center-align">
+                  <div className="col s12 m6 offset-m3">
+                    <label>Title</label>
+                    <input
+                      type="text"
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                      className="center-align"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="row center-align">
-                <div className="col s12 m6 offset-m3">
-                  <label>Time</label>
-                  <input
-                    type="time"
-                    value={selectedTime}
-                    onChange={(e) => setSelectedTime(e.target.value)}
-                    className="center-align"
-                  />
+                <div className="row center-align">
+                  <div className="col s12 m6 offset-m3">
+                    <label>Caption</label>
+                    <input
+                      type="text"
+                      value={caption}
+                      onChange={(e) => setCaption(e.target.value)}
+                      className="center-align"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="row center-align">
-                <div className="col s12 m6 offset-m3">
-                  <label>Interval</label>
-                  <select
-                    className="browser-default"
-                    value={selectedInterval}
-                    onChange={(e) => setSelectedInterval(e.target.value)}
-                    style={{ width: "50%", margin: "0 auto" }}
-                  >
-                    <option value="">Choose Interval</option>
-                    <option value="Once">Just Once</option>
-                    <option value="1 day">1 day</option>
-                    <option value="1 week">1 week</option>
-                    <option value="1 month">1 month</option>
-                    <option value="Every Other Month">Every Other Month</option>
-                    <option value="6 months">6 months</option>
-                    <option value="1 year">1 year</option>
-                  </select>
+                <div className="row center-align">
+                  <div className="col s12 m6 offset-m3">
+                    <label>Image URL</label>
+                    <input
+                      type="text"
+                      value={image}
+                      onChange={(e) => setImage(e.target.value)}
+                      className="center-align"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="row center-align">
-                <div className="col s12" style={{ marginBottom: "0" }}>
-                  <button
-                    className="btn"
-                    onClick={handlePost}
-                    disabled={
-                      !image ||
-                      !selectedDate ||
-                      !selectedTime ||
-                      !selectedInterval ||
-                      !title ||
-                      !caption
-                    }
-                    style={{ marginBottom: "0" }}
-                  >
-                    Post
-                  </button>
+                <div className="row center-align">
+                  <div className="col s12">
+                    {image && (
+                      <img
+                        className="responsive-img"
+                        src={image}
+                        alt="User Image"
+                        style={{ marginBottom: "0" }}
+                      />
+                    )}
+                  </div>
+                </div>
+                <div className="row center-align">
+                  <div className="col s12 m6 offset-m3">
+                    <div
+                      className="file-field input-field"
+                      style={{
+                        marginBottom: "0",
+                        width: "50%",
+                        margin: "0 auto",
+                      }}
+                    >
+                    </div>
+                  </div>
+                </div>
+                <div className="row center-align">
+                  <div className="col s12 m6 offset-m3">
+                    <label>Date</label>
+                    <input
+                      type="date"
+                      value={selectedDate}
+                      onChange={(e) => setSelectedDate(e.target.value)}
+                      className="center-align"
+                    />
+                  </div>
+                </div>
+                <div className="row center-align">
+                  <div className="col s12 m6 offset-m3">
+                    <label>Time</label>
+                    <input
+                      type="time"
+                      value={selectedTime}
+                      onChange={(e) => setSelectedTime(e.target.value)}
+                      className="center-align"
+                    />
+                  </div>
+                </div>
+                <div className="row center-align">
+                  <div className="col s12 m6 offset-m3">
+                    <label>Interval</label>
+                    <select
+                      className="browser-default"
+                      value={selectedInterval}
+                      onChange={(e) => setSelectedInterval(e.target.value)}
+                      style={{ width: "50%", margin: "0 auto" }}
+                    >
+                      <option value="">Choose Interval</option>
+                      <option value="Once">Just Once</option>
+                      <option value="1 day">1 day</option>
+                      <option value="1 week">1 week</option>
+                      <option value="1 month">1 month</option>
+                      <option value="Every Other Month">Every Other Month</option>
+                      <option value="6 months">6 months</option>
+                      <option value="1 year">1 year</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="row center-align">
+                  <div className="col s12" style={{ marginBottom: "0" }}>
+                    <button
+                      className="btn"
+                      onClick={handlePost}
+                      disabled={
+                        !image ||
+                        !selectedDate ||
+                        !selectedTime ||
+                        !selectedInterval ||
+                        !title ||
+                        !caption
+                      }
+                      style={{ marginBottom: "0" }}
+                    >
+                      Post
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

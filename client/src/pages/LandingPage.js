@@ -18,8 +18,11 @@ const LandingPage = () => {
           <div className="row hero-content">
             <div className="row">
               <div className="center-align">
+              <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tsukimi+Rounded:wght@300&display=swap');
+      </style>
                 <h1>
-                  <span className="flow-text">
+                  <span className="flow-text" style={{ fontFamily: 'Tsukimi Rounded', fontWeight: 300}}>
                     <i className="large material-icons">AutoInsta</i>
                   </span>
                 </h1>
