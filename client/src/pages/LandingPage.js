@@ -1,30 +1,31 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
   return (
     <div>
-      <div class="container">
+      <div className="container">
         <section className="hero">
-          <div class="center-align">
-            <div class="">
+          <div className="center-align">
+            <div className="">
               <img
-                class="circle responsive-img"
+                className="circle responsive-img"
                 src="https://s.tmimgcdn.com/scr/800x500/301700/community-network-and-social-health-logo-icon-design-template-v-8_301741-original.jpg"
                 alt="Description of the image"
               />
             </div>
           </div>
-          <div class="row" className="hero-content">
-            <div class="row">
-              <div class="center-align">
+          <div className="row hero-content">
+            <div className="row">
+              <div className="center-align">
                 <h1>
-                  <span class="flow-text">
-                    <i class="large material-icons">AutoInsta</i>
+                  <span className="flow-text">
+                    <i className="large material-icons">AutoInsta</i>
                   </span>
                 </h1>
               </div>
-              <div class="col s6 offset-s6">
-                <span class="flow-text">
+              <div className="col s6 offset-s3 center-align">
+                <span className="flow-text">
                   Our mission is to provide an efficient and user-friendly app
                   that empowers individuals to schedule and automate their
                   Instagram posts. By offering a platform that enables users to
@@ -34,15 +35,16 @@ const LandingPage = () => {
                   is to streamline the Instagram posting process, allowing users
                   to focus on their creativity and engagement with their
                   audience, ultimately enhancing their overall social media
-                  experience.
+                  experience.<br></br>
                 </span>
-                <a
-                  class="center-align"
-                  href="#!"
-                  className="waves-effect waves-light btn"
-                >
-                  Learn More
-                </a>
+                <Link to="/contact">
+                  <a
+                    href="#!"
+                    className="center-align waves-effect waves-light btn"
+                  >
+                    Learn More
+                  </a>
+                </Link>
               </div>
             </div>
           </div>
