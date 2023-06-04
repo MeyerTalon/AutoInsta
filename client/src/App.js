@@ -54,7 +54,7 @@ function App() {
                 AutoInsta
               </Link>
               <a href="#!" data-target="mobile-nav" className="sidenav-trigger">
-                <i className="material-icons">menu</i>
+                <i className="material-icons">Menu</i>
               </a>
               <ul className="right hide-on-med-and-down">
                 <li>
