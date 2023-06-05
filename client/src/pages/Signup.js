@@ -14,6 +14,13 @@ function Signup() {
   });
   const [validated, setValidated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [touchedFields, setTouchedFields] = useState({
+    username: false,
+    email: false,
+    password: false,
+    instaUsername: false,
+    instaPassword: false,
+  });
 
   const [addUser, { error }] = useMutation(ADD_USER);
 
@@ -50,24 +57,34 @@ function Signup() {
       instaUsername: "",
       instaPassword: "",
     });
+    setTouchedFields({
+      username: false,
+      email: false,
+      password: false,
+      instaUsername: false,
+      instaPassword: false,
+    });
+  };
+
+  const handleFieldBlur = (field) => {
+    setTouchedFields({ ...touchedFields, [field]: true });
   };
 
   return (
     <>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tsukimi+Rounded:wght@300&display=swap');
+      </style>
       <div className="container">
         <div className="row">
           <div className="col s12 m6 offset-m3">
             <div className="card">
               <div className="card-content">
                 <div className="center-align">
-                  <span className="card-title">Signup</span>
+                  <span className="card-title" style={{ fontFamily: 'Tsukimi Rounded, sans-serif' }}>Signup</span>
                 </div>
                 <div className="row">
-                  <Form
-                    noValidate
-                    validated={validated}
-                    onSubmit={handleFormSubmit}
-                  >
+                  <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
                     <div className="row">
                       <div className="input-field col s12">
                         <Form.Control
@@ -76,11 +93,12 @@ function Signup() {
                           name="username"
                           value={userFormData.username}
                           onChange={handleInputChange}
+                          onBlur={() => handleFieldBlur("username")}
                           required
                         />
                         <Form.Label htmlFor="username">Username</Form.Label>
                         <Form.Control.Feedback type="invalid">
-                          {!userFormData.username && "Username is required!"}
+                          {touchedFields.username && !userFormData.username && "Username is required!"}
                         </Form.Control.Feedback>
                       </div>
                     </div>
@@ -92,11 +110,12 @@ function Signup() {
                           name="email"
                           value={userFormData.email}
                           onChange={handleInputChange}
+                          onBlur={() => handleFieldBlur("email")}
                           required
                         />
                         <Form.Label htmlFor="email">Email</Form.Label>
                         <Form.Control.Feedback type="invalid">
-                          {!userFormData.email && "Email is required!"}
+                          {touchedFields.email && !userFormData.email && "Email is required!"}
                         </Form.Control.Feedback>
                       </div>
                     </div>
@@ -108,11 +127,12 @@ function Signup() {
                           name="password"
                           value={userFormData.password}
                           onChange={handleInputChange}
+                          onBlur={() => handleFieldBlur("password")}
                           required
                         />
                         <Form.Label htmlFor="password">Password</Form.Label>
                         <Form.Control.Feedback type="invalid">
-                          {!userFormData.password && "Password is required!"}
+                          {touchedFields.password && !userFormData.password && "Password is required!"}
                         </Form.Control.Feedback>
                       </div>
                     </div>
@@ -124,14 +144,12 @@ function Signup() {
                           name="instaUsername"
                           value={userFormData.instaUsername}
                           onChange={handleInputChange}
+                          onBlur={() => handleFieldBlur("instaUsername")}
                           required
                         />
-                        <Form.Label htmlFor="instaUsername">
-                          Instagram Username
-                        </Form.Label>
+                        <Form.Label htmlFor="instaUsername">Instagram Username</Form.Label>
                         <Form.Control.Feedback type="invalid">
-                          {!userFormData.instaUsername &&
-                            "Instagram username is required!"}
+                          {touchedFields.instaUsername && !userFormData.instaUsername && "Instagram username is required!"}
                         </Form.Control.Feedback>
                       </div>
                     </div>
@@ -143,14 +161,12 @@ function Signup() {
                           name="instaPassword"
                           value={userFormData.instaPassword}
                           onChange={handleInputChange}
+                          onBlur={() => handleFieldBlur("instaPassword")}
                           required
                         />
-                        <Form.Label htmlFor="instaPassword">
-                          Instagram Password
-                        </Form.Label>
+                        <Form.Label htmlFor="instaPassword">Instagram Password</Form.Label>
                         <Form.Control.Feedback type="invalid">
-                          {!userFormData.instaPassword &&
-                            "Instagram password is required!"}
+                          {touchedFields.instaPassword && !userFormData.instaPassword && "Instagram password is required!"}
                         </Form.Control.Feedback>
                       </div>
                     </div>
@@ -160,15 +176,13 @@ function Signup() {
                           className="btn waves-effect waves-light"
                           type="submit"
                           name="action"
-                          disabled={
-                            !(
-                              userFormData.username &&
-                              userFormData.email &&
-                              userFormData.password &&
-                              userFormData.instaUsername &&
-                              userFormData.instaPassword
-                            )
-                          }
+                          disabled={!(
+                            userFormData.username &&
+                            userFormData.email &&
+                            userFormData.password &&
+                            userFormData.instaUsername &&
+                            userFormData.instaPassword
+                          )}
                         >
                           Signup
                         </Button>
