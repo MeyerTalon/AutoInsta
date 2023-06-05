@@ -10,7 +10,22 @@ function ProfilePage() {
   const { loading, data } = useQuery(GET_ME);
   const userData = data?.me || {};
 
-  const [removePost, { error }] = useMutation(REMOVE_POST);
+  const [removePost, { error }] = useMutation(REMOVE_POST, {
+    update(cache, { data: { removePost } }) {
+      // Remove the post from the cache after successful deletion
+      cache.modify({
+        id: cache.identify(userData),
+        fields: {
+          posts(existingPosts = []) {
+            const newPosts = existingPosts.filter(
+              (postRef) => postRef.__ref !== cache.identify(removePost)
+            );
+            return newPosts;
+          },
+        },
+      });
+    },
+  });
 
   const handleDeletePost = async (postId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -20,29 +35,8 @@ function ProfilePage() {
     }
 
     try {
-      const { data } = await removePost({
+      await removePost({
         variables: { postId },
-        update(cache, { data }) {
-          // Remove the post from the cache after successful deletion
-          cache.modify({
-            fields: {
-              me(existingMeRef = {}) {
-                const newPostsAfterDeletion = data.removeBook.posts;
-
-                cache.writeFragment({
-                  data: { posts: newPostsAfterDeletion },
-                  fragment: gql`
-                    fragment UpdatedUserPosts on User {
-                      posts
-                    }
-                  `,
-                });
-
-                return existingMeRef;
-              },
-            },
-          });
-        },
       });
 
       // Remove the post's ID from localStorage
@@ -54,7 +48,9 @@ function ProfilePage() {
 
   return (
     <div className="container">
-      <h2 style={{ textAlign: "center" }}>My Posts</h2>
+      <h2 style={{ textAlign: "center", fontFamily: "'Tsukimi Rounded', sans-serif" }}>
+        My Posts
+      </h2>
       <style>
         {`
           .card-container {
