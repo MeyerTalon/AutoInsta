@@ -8,18 +8,27 @@ async function postToInsta(instaUsername, instaPassword, image, caption) {
     console.log(instaPassword);
     const ig = new IgApiClient();
         ig.state.generateDevice(instaUsername);
-        await ig.account.login(instaUsername, instaPassword);
 
-
-        const imageBuffer = await get({
-            url: image,
-            encoding: null, 
-        });
-
-        await ig.publish.photo({
-            file: imageBuffer,
-            caption: caption,
-        });
+        try {
+            await ig.account.login(instaUsername, instaPassword);
+            console.log("Accoount successfully logged into.");
+        } catch (error) {
+            console.log(error);
+        }
+        try {
+            const imageBuffer = await get({
+                url: image,
+                encoding: null, 
+            });
+            await ig.publish.photo({
+                file: imageBuffer,
+                caption: caption,
+            });
+            console.log("Image successfully posted!");
+        } catch (error) {
+            console.log(error);
+        }
+        
 }
 
 module.exports = {
@@ -48,7 +57,7 @@ module.exports = {
         let cronExp = `${minute} ${hour} ${day} ${month} *`;
         console.log(cronExp);
         
-        if (interval === 'Just Once') {
+        if (interval === 'Once') {
             postToInsta(instaUsername, instaPassword, image, caption);
         } else {
             const task = new CronJob(cronExp, async () => {
