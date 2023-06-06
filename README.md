@@ -65,14 +65,9 @@ npm start
 
 ## LIVE✨
 
-[Live deployed Heroku server]()
+[Live deployed Heroku server](https://limitless-taiga-26718.herokuapp.com/)
 
-![alt]()
-![alt]()
-![alt]()
-![alt]()
-![alt]()
-![alt]()
+![alt](./client/public/image.png)
 
 ## Contributing✨
 
