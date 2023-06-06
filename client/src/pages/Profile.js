@@ -46,6 +46,8 @@ function ProfilePage() {
     }
   };
 
+  //Comment for push
+
   return (
     <div className="container">
       <h2 style={{ textAlign: "center", fontFamily: "'Tsukimi Rounded', sans-serif" }}>
@@ -76,7 +78,8 @@ function ProfilePage() {
                 </a>
               </div>
               <div className="card-content">
-                <p>{post.caption}</p>
+                <p>Title: {post.title}</p>
+                <p>Caption: {post.caption}</p>
                 <p>Date: {post.date}</p>
                 <p>Time: {post.time}</p>
                 <p>Interval: {post.interval}</p>

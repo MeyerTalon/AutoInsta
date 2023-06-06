@@ -54,23 +54,23 @@ function App() {
                 AutoInsta
               </Link>
               <a href="#!" data-target="mobile-nav" className="sidenav-trigger">
-                <i className="material-icons">menu</i>
+                <i className="material-icons">Menu</i>
               </a>
               <ul className="right hide-on-med-and-down">
                 <li>
                   <Link to="/">Home</Link>
                 </li>
-                <li>
-                  <Link to="/makepost">Make Post</Link>
-                </li>
-                <li>
-                  <Link to="/contact">Contact Us</Link>
-                </li>
-                <li>
-                  <Link to="/profile">Profile</Link>
-                </li>
                 {Auth.loggedIn() ? (
                   <>
+                    <li>
+                    <Link to="/makepost">Make Post</Link>
+                    </li>
+                    <li>
+                      <Link to="/contact">Contact Us</Link>
+                    </li>
+                    <li>
+                      <Link to="/profile">Profile</Link>
+                    </li>
                     <li>
                       <Link onClick={() => Auth.logout()}>Logout</Link>
                     </li>
